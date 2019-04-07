@@ -1,0 +1,50 @@
+const MongoClient=require('mongodb').MongoClient;
+MongoClient.connect('mongodb://localhost:27017/TodoApp',(err,db)=>{
+    if(err)
+    {
+        return console.log('Unable to connect to server');
+    }
+    console.log('Conected to Data Base');
+    /*db.collection('Todos').insertOne({
+          text:'Kartik',
+          age:21,
+          completed:false
+    },(err,result)=>{
+        if(err)
+        {
+           return console.log('Unable to insert into Data Base'+err);
+        }
+          console.log(JSON.stringify(result.ops,undefined,2));
+    })*/
+
+   /* db.collection('Users').insertOne({
+        name:'Kartik',
+          age:21,
+          location:'India'
+    },(err,result)=>{
+        if(err)
+        {
+            return console.log('Unable to insert into Data Base'+err);
+        }
+        console.log(JSON.stringify(result.ops,undefined,2));
+    })*/
+
+    db.collection('Users').insertMany([
+     {  
+        name:'Siddharth',
+        age:21,
+        location:'Channdigarh' },
+    {  
+            name:'Grover',
+            age:20,
+            location:'Delhi'}
+    ]
+    ,(err,result)=>{
+        if(err)
+        {
+            return console.log('Cannot insert');
+        }
+        console.log(JSON.stringify(result.ops,undefined,2));
+    })
+    db.close;
+});
