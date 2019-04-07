@@ -1,0 +1,20 @@
+const MongoClient=require('mongodb').MongoClient;
+MongoClient.connect('mongodb://localhost:27017/TodoApp',(err,db)=>{
+    if(err)
+    {
+        return console.log('Unable to connect to server');
+    }
+    console.log('Conected to Data Base');
+     // Delete many
+     db.collection('Users').deleteMany({name:'Kartik'}).then((result)=>{
+        console.log(result);
+ });
+   // Delete one
+   db.collection('Users').deleteOne({name:'Akul'}).then((result)=>{
+    console.log(result);
+   })
+// findOneDelete
+  db.collection('Users').findOneAndDelete({name:'Grover'}).then((result)=>{
+    console.log(JSON.stringify(result,undefined,2));
+  })
+});
