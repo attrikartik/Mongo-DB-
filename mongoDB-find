@@ -1,0 +1,22 @@
+const MongoClient=require('mongodb').MongoClient;
+MongoClient.connect('mongodb://localhost:27017/TodoApp',(err,db)=>{
+    if(err)
+    {
+        return console.log('Unable to connect to server');
+    }
+    console.log('Conected to Data Base');
+    /*db.collection('Users').find().toArray().then((docs)=>{      // find all documents from DB
+        console.log('Users');
+        console.log(JSON.stringify(docs,undefined,2));
+    },(err)=>{
+       console.log('Unable to find data');
+    })*/
+
+    db.collection('Users').find({name:'Kartik'}).toArray().then((docs)=>{  // find documents on basis of attributes
+        console.log('Users');
+        console.log(JSON.stringify(docs,undefined,2));
+    },(err)=>{
+       console.log('Unable to find data');
+    })
+  //  db.close;
+});
